@@ -71,7 +71,7 @@ function showInstallButton() {
 import { initDB } from './db.js';
 import { ClientsManager } from './clients.js';
 import { ScheduleManager } from './schedule.js';
-import { FinanceManager } from '../scripts/finance.js';
+import { FinanceManager } from './finance.js';
 import { FinanceView } from '../components/financeView.js';
 import { ThemeManager } from '../themes/index.js';
 import { ThemeSwitcher } from '../components/ThemeSwitcher.js';

@@ -2,7 +2,7 @@
     "name": "Fit Calendar",
     "short_name": "FitCalendar",
     "description": "Система управления тренировками и клиентами",
-    "start_url": ".",
+    "start_url": "./",
     "display": "standalone",
     "background_color": "#F5F5F5",
     "theme_color": "#2196F3",
@@ -26,14 +26,14 @@
             "name": "Расписание",
             "short_name": "Расписание",
             "description": "Открыть расписание",
-            "url": "/?page=schedule",
+            "url": "./?page=schedule",
             "icons": [{ "src": "icons/schedule-192.png", "sizes": "192x192" }]
         },
         {
             "name": "Клиенты",
             "short_name": "Клиенты",
             "description": "Открыть список клиентов",
-            "url": "/?page=clients",
+            "url": "./?page=clients",
             "icons": [{ "src": "icons/clients-192.png", "sizes": "192x192" }]
         }
     ]
