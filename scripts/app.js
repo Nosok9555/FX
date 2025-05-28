@@ -68,13 +68,13 @@ function showInstallButton() {
 }
 
 // Import modules
-import { initDB } from './db.js';
-import { ClientsManager } from './clients.js';
-import { ScheduleManager } from './schedule.js';
-import { FinanceManager } from './finance.js';
-import { FinanceView } from '../components/financeView.js';
-import { ThemeManager } from '../themes/index.js';
-import { ThemeSwitcher } from '../components/ThemeSwitcher.js';
+// import { initDB } from './db.js';
+// import { ClientsManager } from './clients.js';
+// import { ScheduleManager } from './schedule.js';
+// import { FinanceManager } from './finance.js';
+// import { FinanceView } from '../components/financeView.js';
+// import { ThemeManager } from '../themes/index.js';
+// import { ThemeSwitcher } from '../components/ThemeSwitcher.js';
 
 // App state
 const state = {
@@ -84,18 +84,18 @@ const state = {
 };
 
 // Initialize managers
-let clientsManager = new ClientsManager();
-let scheduleManager = new ScheduleManager();
-let financeManager = new FinanceManager();
-let themeManager = new ThemeManager();
-let themeSwitcher = new ThemeSwitcher(themeManager);
-let financeView = new FinanceView();
+// let clientsManager = new ClientsManager();
+// let scheduleManager = new ScheduleManager();
+// let financeManager = new FinanceManager();
+// let themeManager = new ThemeManager();
+// let themeSwitcher = new ThemeSwitcher(themeManager);
+// let financeView = new FinanceView();
 
 // Initialize app
 async function initApp() {
     try {
         console.log('Initializing app...');
-        await initDB();
+        // await initDB();
 
         // Initialize managers
         // await clientsManager.init();
@@ -167,13 +167,13 @@ async function loadPage(page) {
                     </div>
                 </div>
             `;
-            await scheduleManager.renderSchedule('today-schedule');
-            await clientsManager.renderClientList('recent-clients', { limit: 5 });
+            // await scheduleManager.renderSchedule('today-schedule');
+            // await clientsManager.renderClientList('recent-clients', { limit: 5 });
             break;
             
         case 'schedule':
             content.innerHTML = '<div id="schedule-view"></div>';
-            await scheduleManager.renderSchedule('schedule-view');
+            // await scheduleManager.renderSchedule('schedule-view');
             break;
             
         case 'clients':
@@ -190,14 +190,14 @@ async function loadPage(page) {
                     <div id="clients-list"></div>
                 </div>
             `;
-            setupFilters();
-            await clientsManager.renderClientList('clients-list');
+            // setupFilters();
+            // await clientsManager.renderClientList('clients-list');
             break;
             
         case 'finance':
             content.innerHTML = '<div id="finance-view"></div>';
-            const financeData = financeManager.getFinanceData();
-            financeView.render('finance-view', financeData);
+            // const financeData = financeManager.getFinanceData();
+            // financeView.render('finance-view', financeData);
             break;
             
         case 'settings':
@@ -217,7 +217,7 @@ async function loadPage(page) {
                     </div>
                 </div>
             `;
-            themeSwitcher.render('theme-settings');
+            // themeSwitcher.render('theme-settings');
             break;
     }
 }
@@ -229,19 +229,19 @@ function setupFilters() {
     
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
-            clientsManager.applyFilters({
-                name: e.target.value,
-                type: typeFilter.value
-            });
+            // clientsManager.applyFilters({
+            //     name: e.target.value,
+            //     type: typeFilter.value
+            // });
         });
     }
     
     if (typeFilter) {
         typeFilter.addEventListener('change', (e) => {
-            clientsManager.applyFilters({
-                name: searchInput.value,
-                type: e.target.value
-            });
+            // clientsManager.applyFilters({
+            //     name: searchInput.value,
+            //     type: e.target.value
+            // });
         });
     }
 }
@@ -251,21 +251,21 @@ function showClientForm(client = null) {
     const content = document.getElementById('content');
     content.innerHTML = '<div id="client-form"></div>';
     
-    const form = new ClientForm(client);
-    form.render('client-form');
+    // const form = new ClientForm(client);
+    // form.render('client-form');
     
-    form.onSubmit = async (formData) => {
-        if (client) {
-            await clientsManager.updateClient(client.id, formData);
-        } else {
-            await clientsManager.addClient(formData);
-        }
-        loadPage('clients');
-    };
+    // form.onSubmit = async (formData) => {
+    //     if (client) {
+    //         await clientsManager.updateClient(client.id, formData);
+    //     } else {
+    //         await clientsManager.addClient(formData);
+    //     }
+    //     loadPage('clients');
+    // };
     
-    form.onCancel = () => {
-        loadPage('clients');
-    };
+    // form.onCancel = () => {
+    //     loadPage('clients');
+    // };
 }
 
 // Setup online/offline detection
