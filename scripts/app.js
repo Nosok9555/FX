@@ -96,16 +96,16 @@ async function initApp() {
     try {
         console.log('Initializing app...');
         await initDB();
-        
+
         // Initialize managers
-        await clientsManager.init();
-        await scheduleManager.init();
-        await financeManager.init();
-        
-        await clientsManager.loadData();
-        await scheduleManager.loadData();
-        await financeManager.loadData();
-        
+        // await clientsManager.init();
+        // await scheduleManager.init();
+        // await financeManager.init();
+
+        // await clientsManager.loadData();
+        // await scheduleManager.loadData();
+        // await financeManager.loadData();
+
         setupNavigation();
         loadPage(state.currentPage);
         setupOnlineDetection();
