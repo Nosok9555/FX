@@ -67,11 +67,13 @@ self.addEventListener('fetch', event => {
                         // Клонируем ответ, так как он может быть использован только один раз
                         const responseToCache = response.clone();
 
-                        // Кэшируем новый ответ
-                        caches.open(CACHE_NAME)
-                            .then(cache => {
-                                cache.put(event.request, responseToCache);
-                            });
+                        // Кэшируем новый ответ, исключая URL с параметрами страницы
+                        if (!event.request.url.includes('/?page=')) {
+                             caches.open(CACHE_NAME)
+                                .then(cache => {
+                                    cache.put(event.request, responseToCache);
+                                });
+                        }
 
                         return response;
                     })

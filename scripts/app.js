@@ -93,27 +93,46 @@ const financeView = new FinanceView();
 
 // Initialize app
 async function initApp() {
-    await initDB();
-    await clientsManager.init();
-    await scheduleManager.init();
-    await financeManager.init();
-    
-    await clientsManager.loadData();
-    await scheduleManager.loadData();
-    await financeManager.loadData();
-    
-    setupNavigation();
-    loadPage(state.currentPage);
-    setupOnlineDetection();
+    try {
+        console.log('Initializing app...');
+        await initDB();
+        
+        // Initialize managers
+        clientsManager = new ClientsManager();
+        scheduleManager = new ScheduleManager();
+        financeManager = new FinanceManager();
+        themeManager = new ThemeManager();
+        themeSwitcher = new ThemeSwitcher(themeManager);
+        financeView = new FinanceView();
+        
+        await clientsManager.init();
+        await scheduleManager.init();
+        await financeManager.init();
+        
+        await clientsManager.loadData();
+        await scheduleManager.loadData();
+        await financeManager.loadData();
+        
+        setupNavigation();
+        loadPage(state.currentPage);
+        setupOnlineDetection();
+        console.log('App initialization complete.');
+    } catch (error) {
+        console.error('Error initializing app:', error);
+        showError('Ошибка инициализации приложения. Пожалуйста, обновите страницу.');
+    }
 }
 
 // Setup navigation
 function setupNavigation() {
+    console.log('Setting up navigation...');
     const navItems = document.querySelectorAll('.nav-item');
+    console.log(`Found ${navItems.length} navigation items.`);
     navItems.forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
             const page = e.currentTarget.dataset.page;
+            console.log(`Navigation item clicked: ${page}`);
             state.currentPage = page;
             loadPage(page);
             
@@ -127,11 +146,19 @@ function setupNavigation() {
             window.history.pushState({}, '', url);
         });
     });
+    console.log('Navigation setup complete.');
 }
 
 // Load page content
 async function loadPage(page) {
+    console.log(`Loading page: ${page}...`);
     const content = document.getElementById('content');
+    if (!content) {
+        console.error('Content container not found');
+        showError('Ошибка: Не найден контейнер для контента.');
+        return;
+    }
+    console.log('Content container found.');
     
     switch (page) {
         case 'home':
