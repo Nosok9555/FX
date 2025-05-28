@@ -1,7 +1,7 @@
 // Register Service Worker
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
+        navigator.serviceWorker.register('./service-worker.js')
             .then(registration => {
                 console.log('ServiceWorker registration successful');
                 
@@ -84,12 +84,12 @@ const state = {
 };
 
 // Initialize managers
-const clientsManager = new ClientsManager();
-const scheduleManager = new ScheduleManager();
-const financeManager = new FinanceManager();
-const themeManager = new ThemeManager();
-const themeSwitcher = new ThemeSwitcher(themeManager);
-const financeView = new FinanceView();
+let clientsManager = new ClientsManager();
+let scheduleManager = new ScheduleManager();
+let financeManager = new FinanceManager();
+let themeManager = new ThemeManager();
+let themeSwitcher = new ThemeSwitcher(themeManager);
+let financeView = new FinanceView();
 
 // Initialize app
 async function initApp() {
@@ -98,13 +98,6 @@ async function initApp() {
         await initDB();
         
         // Initialize managers
-        clientsManager = new ClientsManager();
-        scheduleManager = new ScheduleManager();
-        financeManager = new FinanceManager();
-        themeManager = new ThemeManager();
-        themeSwitcher = new ThemeSwitcher(themeManager);
-        financeView = new FinanceView();
-        
         await clientsManager.init();
         await scheduleManager.init();
         await financeManager.init();
@@ -309,5 +302,5 @@ window.addEventListener('popstate', () => {
     });
 });
 
-// Start the app
+// Запускаем инициализацию приложения
 document.addEventListener('DOMContentLoaded', initApp); 
