@@ -279,14 +279,20 @@ function showClientForm(client = null) {
 function setupOnlineDetection() {
     window.addEventListener('online', () => {
         state.isOnline = true;
-        document.querySelector('.status')?.classList.replace('offline', 'online');
-        document.querySelector('.status')?.textContent = 'Онлайн';
+        const statusElement = document.querySelector('.status');
+        if (statusElement) {
+            statusElement.classList.replace('offline', 'online');
+            statusElement.textContent = 'Онлайн';
+        }
     });
     
     window.addEventListener('offline', () => {
         state.isOnline = false;
-        document.querySelector('.status')?.classList.replace('online', 'offline');
-        document.querySelector('.status')?.textContent = 'Офлайн';
+        const statusElement = document.querySelector('.status');
+        if (statusElement) {
+            statusElement.classList.replace('online', 'offline');
+            statusElement.textContent = 'Офлайн';
+        }
     });
 }
 
