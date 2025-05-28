@@ -1,5 +1,3 @@
-import { Chart } from 'chart.js/auto';
-
 export class FinanceView {
     constructor() {
         this.charts = {};
