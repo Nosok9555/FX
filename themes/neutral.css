@@ -1,0 +1,20 @@
+.theme-neutral {
+    --primary-color: #78909C;
+    --primary-dark: #546E7A;
+    --primary-light: #CFD8DC;
+    --accent-color: #90A4AE;
+    --text-color: #37474F;
+    --text-secondary: #607D8B;
+    --bg-color: #ECEFF1;
+    --bg-light: #FFFFFF;
+    --border-color: #B0BEC5;
+    --danger-color: #B71C1C;
+    --warning-color: #F57F17;
+    --success-color: #1B5E20;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --card-bg: #FFFFFF;
+    --input-bg: #FFFFFF;
+    --input-border: #B0BEC5;
+    --hover-bg: #ECEFF1;
+    --active-bg: #CFD8DC;
+} 
